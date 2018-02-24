@@ -2,10 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4ad03226-9e29-4d89-a345-a837ccb7bd8c" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/exceldiff/out00-PKG.pkg" afterPath="$PROJECT_DIR$/build/exceldiff/out00-PKG.pkg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dist/exceldiff.exe" afterPath="$PROJECT_DIR$/dist/exceldiff.exe" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/exceldiff/out00-EXE.toc" afterPath="$PROJECT_DIR$/build/exceldiff/out00-EXE.toc" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/exceldiff.py" afterPath="$PROJECT_DIR$/exceldiff.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -16,7 +13,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="CoverageDataManager">
-    <SUITE FILE_PATH="coverage/exceldiff$exceldiff.coverage" NAME="exceldiff Coverage Results" MODIFIED="1519459852257" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/exceldiff$exceldiff.coverage" NAME="exceldiff Coverage Results" MODIFIED="1519494801951" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/exceldiff$update.coverage" NAME="update Coverage Results" MODIFIED="1517579734834" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/exceldiff$practice.coverage" NAME="practice Coverage Results" MODIFIED="1517644451772" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/exceldiff$main.coverage" NAME="main Coverage Results" MODIFIED="1518076385413" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
@@ -26,8 +23,8 @@
       <file leaf-file-name="exceldiff.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/exceldiff.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="65" column="30" lean-forward="true" selection-start-line="65" selection-start-column="30" selection-end-line="65" selection-end-column="30" />
+            <state relative-caret-position="-4173">
+              <caret line="690" column="26" lean-forward="true" selection-start-line="690" selection-start-column="26" selection-end-line="690" selection-end-column="26" />
               <folding>
                 <element signature="e#25#34#0" expanded="true" />
               </folding>
@@ -35,11 +32,31 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="grid.py" pinned="false" current-in-tab="false">
+        <entry file="file://C:/Python27/Lib/site-packages/wx-3.0-msw/wx/grid.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="191">
+              <caret line="1194" column="8" lean-forward="false" selection-start-line="1194" selection-start-column="8" selection-end-line="1194" selection-end-column="8" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="tempt.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/tempt.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="_core.py" pinned="false" current-in-tab="false">
         <entry file="file://C:/Python27/Lib/site-packages/wx-3.0-msw/wx/_core.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="462720">
-              <caret line="15425" column="33" lean-forward="false" selection-start-line="15425" selection-start-column="12" selection-end-line="15425" selection-end-column="33" />
+            <state relative-caret-position="191">
+              <caret line="14449" column="8" lean-forward="false" selection-start-line="14449" selection-start-column="8" selection-end-line="14449" selection-end-column="8" />
               <folding />
             </state>
           </provider>
@@ -56,8 +73,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>self.sbSizer6</find>
-      <find>self.sbSizer7</find>
       <find>rows</find>
       <find>sbSizer12</find>
       <find>range(0,</find>
@@ -74,7 +89,6 @@
       <find>setcellvalue</find>
       <find>self.compare</find>
       <find>sheet_compare</find>
-      <find>print</find>
       <find>chr</find>
       <find>0, 0</find>
       <find>old</find>
@@ -84,6 +98,11 @@
       <find>cell_result</find>
       <find>xlrd</find>
       <find>str</find>
+      <find>row_delete_result</find>
+      <find>row_dele</find>
+      <find>FIND</find>
+      <find>wx.Expand</find>
+      <find>print</find>
     </findStrings>
     <replaceStrings>
       <replace>col</replace>
@@ -103,6 +122,7 @@
         <option value="$PROJECT_DIR$/packup.py" />
         <option value="$PROJECT_DIR$/main.py" />
         <option value="$PROJECT_DIR$/makefile script.py" />
+        <option value="$PROJECT_DIR$/tempt.py" />
         <option value="$PROJECT_DIR$/exceldiff.py" />
       </list>
     </option>
@@ -325,7 +345,14 @@
       <option name="project" value="LOCAL" />
       <updated>1519459655282</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="修改row_compare规则，两行全空视为空，有不空的行的空视为不同">
+      <created>1519459941340</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1519459941340</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -334,11 +361,11 @@
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1796875" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3289183" sideWeight="0.50208336" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.30463576" sideWeight="0.284375" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.30463576" sideWeight="0.49791667" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.30463576" sideWeight="0.715625" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32894737" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -371,14 +398,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://C:/Python27/Lib/site-packages/wx-3.0-msw/wx/grid.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="57990">
-          <caret line="1933" column="31" lean-forward="false" selection-start-line="1933" selection-start-column="31" selection-end-line="1933" selection-end-column="31" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/exceldiff.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -669,14 +688,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://C:/Python27/Lib/site-packages/wx-3.0-msw/wx/grid.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="57960">
-          <caret line="1933" column="31" lean-forward="false" selection-start-line="1933" selection-start-column="31" selection-end-line="1933" selection-end-column="31" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/exceldiff.spec">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -691,18 +702,34 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/tempt.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/Python27/Lib/site-packages/wx-3.0-msw/wx/grid.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="191">
+          <caret line="1194" column="8" lean-forward="false" selection-start-line="1194" selection-start-column="8" selection-end-line="1194" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://C:/Python27/Lib/site-packages/wx-3.0-msw/wx/_core.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="462720">
-          <caret line="15425" column="33" lean-forward="false" selection-start-line="15425" selection-start-column="12" selection-end-line="15425" selection-end-column="33" />
+        <state relative-caret-position="191">
+          <caret line="14449" column="8" lean-forward="false" selection-start-line="14449" selection-start-column="8" selection-end-line="14449" selection-end-column="8" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/exceldiff.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="65" column="30" lean-forward="true" selection-start-line="65" selection-start-column="30" selection-end-line="65" selection-end-column="30" />
+        <state relative-caret-position="-4173">
+          <caret line="690" column="26" lean-forward="true" selection-start-line="690" selection-start-column="26" selection-end-line="690" selection-end-column="26" />
           <folding>
             <element signature="e#25#34#0" expanded="true" />
           </folding>

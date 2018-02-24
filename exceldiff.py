@@ -14,7 +14,7 @@ excel_old_row_labels = []
 excel_new_row_labels = []
 excel_old_col_labels = []
 excel_new_col_labels = []
-
+tempt_cell_compare = []
 translate ={"pass":u"无修改","delete":u"删除","insert":u"新增"}
 
 
@@ -29,14 +29,14 @@ def convert_to_title(num):
     return ''.join(result)
 
 
-def find_nth_element(list,target,n):
-    i=0
-    for i in range(0,len(list)):
+def find_nth_element(list, target, n):
+    i = 0
+    for i in range(0, len(list)):
         if target is list[i]:
-            n-=1
-        if n==0:
+            n -= 1
+        if n == 0:
             return i
-    if i==len(list):
+    if i == len(list):
         return -1
 
 
@@ -52,21 +52,37 @@ def nmMatrix(n, m, v):
 
 # 单元格比较函数
 def cell_compare(cell1, cell2):
-    if cell1.value==cell2.value:
+    if cell1.value == cell2.value:
         return True
     return False
 
 
-# 行列的函数比较，行/列所有单元格不同才返回不同
-def row_compare(row1, row2):
+# 行列的函数比较，已弃用
+def row_compare2(row1, row2):
     n = min(len(row1), len(row2))
-    all_empty_flap = 1
+    all_empty_flag = 1
     for i in range(0, n):
         if (row1[i].value == ""and row2[i].value == "") is False:
-            all_empty_flap = 0
+            all_empty_flag = 0
             if row1[i].value == row2[i].value:
                 return True  # 只要有一个相同，返回相同，视为相同行/列
-    if all_empty_flap == 1:
+    if all_empty_flag == 1:
+        return True
+    return False
+
+
+def row_compare(row1,row2):
+    all_empty_flag = 1
+    n = min(len(row1), len(row2))
+    for i in range(0, n):
+        if (row1[i].value == "" and row2[i].value == "") is False:
+            all_empty_flag = 0
+    if all_empty_flag == 1:
+        return True
+    del tempt_cell_compare[:]
+    row_compare_tool_func(row1, row2)
+
+    if tempt_cell_compare.count("pass") > 0:
         return True
     return False
 
@@ -95,6 +111,66 @@ def dfs(list1, list2, f, v, n, m):
         f[n][m] = dfs(list1, list2, f, v, n, m - 1) + 1
         v[n][m] = 2
     return f[n][m]
+
+
+# 用于行比较的DP
+def cell_compare2(cell1,cell2):
+    if cell1.value == "" and cell2.value == "":
+        return False
+    if cell1.value == cell2.value:
+        return True
+    return False
+
+
+def dfs2(list1, list2, f, v, n, m):
+    if f[n][m] >= 0:
+        return f[n][m]
+    if n == 0 and m == 0:
+        f[n][m] = 0
+        return 0
+    if n == 0:
+        v[n][m] = 2
+        f[n][m] = dfs2(list1, list2, f, v, n, m - 1) + 1
+        return f[n][m]
+    if m == 0:
+        v[n][m] = 1
+        f[n][m] = dfs2(list1, list2, f, v, n - 1, m) + 1
+        return f[n][m]
+    if cell_compare2(list1[n - 1], list2[m - 1]):
+        f[n][m] = dfs2(list1, list2, f, v, n - 1, m - 1)
+        return f[n][m]
+    if dfs2(list1, list2, f, v, n, m - 1) > dfs2(list1, list2, f, v, n - 1, m):
+        f[n][m] = dfs(list1, list2, f, v, n - 1, m) + 1
+        v[n][m] = 1
+    else:
+        f[n][m] = dfs2(list1, list2, f, v, n, m - 1) + 1
+        v[n][m] = 2
+    return f[n][m]
+
+
+def row_compare_tool(n, m, v):
+    if n == 0 and m == 0:
+        return
+    if v[n][m] == 0:
+        row_compare_tool(n - 1, m - 1, v)
+        tempt_cell_compare.append("pass")
+    elif v[n][m] == 1:
+        row_compare_tool(n - 1, m, v)
+        tempt_cell_compare.append("delete")
+    else:
+        row_compare_tool(n, m - 1, v)
+        tempt_cell_compare.append("insert")
+
+
+def row_compare_tool_func(list1, list2):
+    n = len(list1)
+    m = len(list2)
+    del tempt_cell_compare[:]
+    f = nmMatrix(n + 1, m + 1, -1)
+    v = nmMatrix(n + 1, m + 1, 0)
+    dfs2(list1, list2, f, v, n, m)
+    row_compare_tool(n, m, v)
+# 用于行与行比较的结束
 
 
 def row_find_operation(n, m, v):
@@ -524,50 +600,50 @@ class ExcelDiff(wx.Frame):
             new_cols.append(new_table.col(i))
         col_func(old_cols, new_cols)
         # 单元格比较
-        i = 0
-        m = 0
-        # i,j为旧表格的行列，m、n为新表格行列
-        del cell_result[:]
-        while i < old_table.nrows and m < new_table.nrows:
-            while row_result[i] == "delete":
-                i += 1
-                if i >= old_table.nrows:
-                    break
-            while row_result[m] == "insert":
-                m += 1
-                if m >= new_table.nrows:
-                    break
-            if i >= old_table.nrows or m >= new_table.nrows:
-                break
-            else:
-                j = 0
-                n = 0
-                while j < old_table.ncols and n < new_table.ncols:
-                    while col_result[j] == "delete":
-                        j += 1
-                        if j >= old_table.ncols:
-                            break
-                    while col_result[n] == "insert":
-                        n += 1
-                        if n >= new_table.ncols:
-                            break
-                    if j >= old_table.ncols or n >= new_table.ncols:
-                        break
-                    if not cell_compare(old_table.cell(i, j), new_table.cell(m, n)):
-                        cell_result.append([i, j, m, n, old_table.cell(i, j).value, new_table.cell(m, n).value])
-                    j += 1
-                    n += 1
-            i += 1
-            m += 1
-        # 数据处理完毕
+        # i = 0
+        # m = 0
+        # # i,j为旧表格的行列，m、n为新表格行列
+        # del cell_result[:]
+        # while i < old_table.nrows and m < new_table.nrows:
+        #     while row_result[i] == "delete":
+        #         i += 1
+        #         if i >= old_table.nrows:
+        #             break
+        #     while row_result[m] == "insert":
+        #         m += 1
+        #         if m >= new_table.nrows:
+        #             break
+        #     if i >= old_table.nrows or m >= new_table.nrows:
+        #         break
+        #     else:
+        #         j = 0
+        #         n = 0
+        #         while j < old_table.ncols and n < new_table.ncols:
+        #             while col_result[j] == "delete":
+        #                 j += 1
+        #                 if j >= old_table.ncols:
+        #                     break
+        #             while col_result[n] == "insert":
+        #                 n += 1
+        #                 if n >= new_table.ncols:
+        #                     break
+        #             if j >= old_table.ncols or n >= new_table.ncols:
+        #                 break
+        #             if not cell_compare(old_table.cell(i, j), new_table.cell(m, n)):
+        #                 cell_result.append([i, j, m, n, old_table.cell(i, j).value, new_table.cell(m, n).value])
+        #             j += 1
+        #             n += 1
+        #     i += 1
+        #     m += 1
+        # 单元格比较错了~~~重写吧，凌晨写的代码果然不靠谱
         #
+
         # 显示结果
         self.row_compare_text.SetLabelText(
             u"共计新增" + str(row_result.count("insert")) + u"行,删除" + str(row_result.count("delete")) + u"行")
         self.col_compare_text.SetLabelText(
             u"共计新增" + str(col_result.count("insert")) + u"列,删除" + str(col_result.count("delete")) + u"列")
-        self.cell_compare_text.SetLabelText(
-            u"共计改动" + str(len(cell_result)) + u"个单元格")
+
         if row_result.count("delete") + row_result.count("insert") - self.row_compare.GetNumberRows() > 0:
             self.row_compare.AppendRows(row_result.count("delete") + row_result.count("insert") - self.row_compare.GetNumberRows())
         tempt = 0
@@ -608,9 +684,48 @@ class ExcelDiff(wx.Frame):
                 col_insert_result.append(convert_to_title(i - delete_counter))
                 tempt += 1
                 insert_counter += 1
+        # ----------------------------#
+        i = 0
+        m = 0
+        # i,j为旧表格的行列，m、n为新表格行列
+        del cell_result[:]
+        while i < old_table.nrows and m < new_table.nrows:
+            while i + 1 in row_delete_result:
+                i += 1
+                if i >= old_table.nrows:
+                    break
+            while m + 1 in row_insert_result:
+                m += 1
+                if m >= new_table.nrows:
+                    break
+            if i >= old_table.nrows or m >= new_table.nrows:
+                break
+            else:
+                j = 0
+                n = 0
+                while j < old_table.ncols and n < new_table.ncols:
+                    while convert_to_title(j) in col_delete_result:
+                        j += 1
+                        if j >= old_table.ncols:
+                            break
+                    while convert_to_title(n) in col_insert_result:
+                        n += 1
+                        if n >= new_table.ncols:
+                            break
+                    if j >= old_table.ncols or n >= new_table.ncols:
+                        break
+                    if not cell_compare(old_table.cell(i, j), new_table.cell(m, n)):
+                        cell_result.append([i, j, m, n, old_table.cell(i, j).value, new_table.cell(m, n).value])
+                    j += 1
+                    n += 1
+            i += 1
+            m += 1
+        #cell compare结束
         tempt = 0
         if len(cell_result) > self.cell_compare.GetNumberRows():
             self.cell_compare.AppendRows(len(cell_result) - self.cell_compare.GetNumberRows())
+        self.cell_compare_text.SetLabelText(
+            u"共计改动" + str(len(cell_result)) + u"个单元格")
         for i in cell_result:
             self.cell_compare.SetCellValue(tempt, 0, "[" + str(i[0] + 1) + "," + convert_to_title(i[1]) + "]" + ",[" + str(
                 i[2] + 1) + "," + convert_to_title(i[3]) + "]")
@@ -658,17 +773,21 @@ class ExcelDiff(wx.Frame):
         del excel_new_row_labels[:]
         del excel_old_col_labels[:]
         del excel_new_col_labels[:]
+        tempt1 = 1
         for i in range(0, self.excel_old.GetNumberRows()):
             if i >= len(row_result) or row_result[i] != "insert":
-                excel_old_row_labels.append(i+1)
+                excel_old_row_labels.append(tempt1)
+                tempt1 += 1
             else:
                 i += 1
                 excel_old_row_labels.append("")
+        tempt1 = 0
         for i in range(0, self.excel_old.GetNumberCols()):
             if i >= len(col_result) or col_result[i] != "insert":
-                excel_old_col_labels.append(convert_to_title(i))
+                excel_old_col_labels.append(convert_to_title(tempt1))
+                tempt1 += 1
             else:
-                excel_old_col_labels.insert(i-1, "")
+                excel_old_col_labels.insert(i, "")
                 i += 1
         for i in range(0,self.excel_new.GetNumberRows()):
             excel_new_row_labels.append(i+1)
@@ -678,7 +797,7 @@ class ExcelDiff(wx.Frame):
         for i in row_delete_result:
             excel_new_row_labels.insert(excel_old_row_labels.index(i), "")
         for i in col_delete_result:
-            excel_new_col_labels.insert(excel_new_col_labels.index(i)+1,"")
+            excel_new_col_labels.insert(excel_old_col_labels.index(i),"")
         # 绘制表头
         for i in range(0,self.excel_old.GetNumberRows()):
             self.excel_old.SetRowLabelValue(i,str(excel_old_row_labels[i]))
@@ -727,36 +846,61 @@ class ExcelDiff(wx.Frame):
             if m >= self.excel_new.GetNumberRows():
                 break
         # 上色
+        # 清除原有颜色
         for i in range(0,self.excel_old.GetNumberRows()):
             for j in range(0, self.excel_old.GetNumberCols()):
                 self.excel_old.SetCellBackgroundColour(i, j, wx.NullColour)
         for i in range(0,self.excel_new.GetNumberRows()):
             for j in range(0, self.excel_new.GetNumberCols()):
                 self.excel_new.SetCellBackgroundColour(i, j, wx.NullColour)
+        # 删除的内容染红色
+        # 染旧表行删除
         for i in row_delete_result:
             index= excel_old_row_labels.index(i)
             for j in range(0,self.excel_old.GetNumberCols()):
-                self.excel_old.SetCellBackgroundColour(index, j, '#F08080')
-            for j in range(0,self.excel_new.GetNumberCols()):
-                self.excel_new.SetCellBackgroundColour(index, j, '#F08080')
-        for i in row_insert_result:
-            index=excel_new_row_labels.index(i)
-            for j in range(0, self.excel_old.GetNumberCols()):
-                self.excel_old.SetCellBackgroundColour(index, j, '#B0C4DE')
-            for j in range(0, self.excel_new.GetNumberCols()):
-                self.excel_new.SetCellBackgroundColour(index, j, '#B0C4DE')
+                self.excel_old.SetCellBackgroundColour(index, j, '#F08080')  # 红色
+        # 染旧表列删除
         for i in col_delete_result:
             index= excel_old_col_labels.index(i)
             for j in range(0,self.excel_old.GetNumberRows()):
                 self.excel_old.SetCellBackgroundColour(j,index,'#F08080')
-            for j in range(0,self.excel_new.GetNumberRows()):
-                self.excel_new.SetCellBackgroundColour(j, index, '#F08080')
+        # 染旧表行新增
+        tempt = 1
+        while find_nth_element(excel_old_row_labels, "", tempt) >= 0:
+            for j in range(0, self.excel_old.GetNumberCols()):
+                self.excel_old.SetCellBackgroundColour(find_nth_element(excel_old_row_labels, "", tempt), j, '#B0C4DE')  # 蓝色
+            tempt += 1
+        # 染旧表列新增
+        tempt = 1
+        while find_nth_element(excel_old_col_labels, "", tempt) >= 0:
+            for j in range(0, self.excel_old.GetNumberRows()):
+                self.excel_old.SetCellBackgroundColour(j,find_nth_element(excel_old_col_labels, "", tempt), '#B0C4DE')
+            tempt += 1
+
+
+        # 染新表行删除
+        tempt = 1
+        while find_nth_element(excel_new_row_labels, "", tempt) >= 0:
+            for j in range(0, self.excel_new.GetNumberCols()):
+                self.excel_new.SetCellBackgroundColour(find_nth_element(excel_new_row_labels, "", tempt), j, '#F08080')
+            tempt += 1
+        # 染新表列删除
+        tempt = 1
+        while find_nth_element(excel_new_col_labels, "", tempt) >= 0:
+            for j in range(0, self.excel_new.GetNumberRows()):
+                self.excel_new.SetCellBackgroundColour(j, find_nth_element(excel_new_col_labels,"", tempt), '#F08080')
+            tempt+=1
+        # 染新表行新增
+        for i in row_insert_result:
+            index = excel_new_row_labels.index(i)
+            for j in range(0, self.excel_new.GetNumberCols()):
+                self.excel_new.SetCellBackgroundColour(index, j, '#B0C4DE')
+        # 染新表列新增
         for i in col_insert_result:
             index = excel_new_col_labels.index(i)
-            for j in range(0, self.excel_old.GetNumberRows()):
-                self.excel_old.SetCellBackgroundColour(j,index, '#B0C4DE')
             for j in range(0, self.excel_new.GetNumberRows()):
                 self.excel_new.SetCellBackgroundColour(j,index, '#B0C4DE')
+
         for i in cell_result:
             self.excel_old.SetCellBackgroundColour(excel_old_row_labels.index(i[0]+1),excel_old_col_labels.index(convert_to_title(i[1])),
                                                    "#FFFF00")
