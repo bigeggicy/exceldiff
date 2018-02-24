@@ -61,7 +61,7 @@ def cell_compare(cell1, cell2):
 def row_compare(row1, row2):
     n = min(len(row1), len(row2))
     for i in range(0, n):
-        if row1[i].value == row2[i].value:
+        if (row1[i].value == ""and row2[i].value =="") is False and row1[i].value == row2[i].value:
             return True  # 只要有一个相同，返回相同，视为相同行/列
     return False
 
@@ -834,10 +834,12 @@ class ExcelDiff(wx.Frame):
 
         self.excel_old.ClearSelection()
         self.excel_old.SelectBlock(old_cell_row, old_cell_col,old_cell_row, old_cell_col)
+        self.excel_old.GoToCell(old_cell_row, old_cell_col)
         self.excel_old.MakeCellVisible(old_cell_row, old_cell_col)
         self.excel_new.ClearSelection()
         self.excel_new.SelectBlock(new_cell_row, new_cell_col,new_cell_row, new_cell_col)
-        self.excel_old.MakeCellVisible(new_cell_row, new_cell_col)
+        self.excel_new.MakeCellVisible(new_cell_row, new_cell_col)
+        self.excel_new.GoToCell(new_cell_row, new_cell_col)
         e.Skip()
 
     # 错误提示框
