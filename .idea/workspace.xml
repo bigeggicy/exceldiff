@@ -2,10 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4ad03226-9e29-4d89-a345-a837ccb7bd8c" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/exceldiff/out00-PKG.pkg" afterPath="$PROJECT_DIR$/build/exceldiff/out00-PKG.pkg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dist/exceldiff.exe" afterPath="$PROJECT_DIR$/dist/exceldiff.exe" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/exceldiff/out00-EXE.toc" afterPath="$PROJECT_DIR$/build/exceldiff/out00-EXE.toc" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -361,7 +358,14 @@
       <option name="project" value="LOCAL" />
       <updated>1519495693908</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="这次改的比较多，发现了之前写的bug&#10;1、row_compare的策略更改为DP找两个list变换，若有pass存在即有相同元素即返回TRUE。存在的问题是错位匹配的情况下，仍然会返回TRUE，会出现整行单元格修改但却不看作是行增删的问题，暂时没有想到更好的优化策略。&#10;以下的锅不属于之前的row_compare，有一些比较大的问题，导致多行增删的结果不正常&#10;2、之前的cell_compare有问题，会导致部分已被删除的行列扔纳入比较，导致结果异常，多了很多不应该有的单元格&#10;3、染色的问题，删除的染色有问题，导致染色错误&#10;4、被删除的列在新表格显示中插入的空列位置不正确">
+      <created>1519495712365</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1519495712365</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="ToolWindowManager">
