@@ -63,6 +63,12 @@ def row_compare(row1, row2):
     for i in range(0, n):
         if (row1[i].value == ""and row2[i].value =="") is False and row1[i].value == row2[i].value:
             return True  # 只要有一个相同，返回相同，视为相同行/列
+    all_empty_flap = 1
+    for i in range(0,n):
+        if (row1[i].value == ""and row2[i].value =="") is False:
+            all_empty_flap = 0
+    if all_empty_flap == 1:
+        return True
     return False
 
 
