@@ -182,7 +182,7 @@ class ExcelDiff(wx.Frame):
         sbSizer1.Add(gSizer1, 0, wx.ALL | wx.ALIGN_CENTER_HORIZONTAL, 5)
 
         fgSizer3 = wx.FlexGridSizer(0, 2, 0, 0)
-        fgSizer3.SetFlexibleDirection(wx.BOTH)
+        fgSizer3.SetFlexibleDirection(wx.HORIZONTAL)
         fgSizer3.SetNonFlexibleGrowMode(wx.FLEX_GROWMODE_SPECIFIED)
 
         sbSizer6 = wx.StaticBoxSizer(wx.StaticBox(sbSizer1.GetStaticBox(), wx.ID_ANY, u"旧Excel表"), wx.VERTICAL)
@@ -248,7 +248,7 @@ class ExcelDiff(wx.Frame):
         sbSizer1.Add(fgSizer3, 1, wx.EXPAND, 5)
 
         fgSizer4 = wx.FlexGridSizer(0, 4, 0, 0)
-        fgSizer4.SetFlexibleDirection(wx.BOTH)
+        fgSizer4.SetFlexibleDirection(wx.HORIZONTAL)
         fgSizer4.SetNonFlexibleGrowMode(wx.FLEX_GROWMODE_SPECIFIED)
 
         sbSizer8 = wx.StaticBoxSizer(wx.StaticBox(sbSizer1.GetStaticBox(), wx.ID_ANY, u"行增删"), wx.VERTICAL)
@@ -773,21 +773,25 @@ class ExcelDiff(wx.Frame):
         if self.row_compare.GetCellValue(e.GetRow(), 0) == u"新增":
             new_insert_row = int(self.row_compare.GetCellValue(e.GetRow(), 1))
             self.excel_new.SelectRow(excel_new_row_labels.index(new_insert_row))
+            self.excel_new.GoToCell(excel_new_row_labels.index(new_insert_row),0)
             insert_count=0
             for i in range(0,e.GetRow()):
                 if self.row_compare.GetCellValue(i,0) == u"新增":
                     insert_count += 1
             old_insert_row = find_nth_element(excel_old_row_labels, "", insert_count+1)
             self.excel_old.SelectRow(old_insert_row)
+            self.excel_old.GoToCell(old_insert_row,0)
         if self.row_compare.GetCellValue(e.GetRow(),0) == u"删除":
             old_delete_row = int(self.row_compare.GetCellValue(e.GetRow(),1))
             self.excel_old.SelectRow(excel_old_row_labels.index(old_delete_row))
+            self.excel_old.GoToCell(excel_old_row_labels.index(old_delete_row),0)
             delete_count = 0
             for i in range(0, e.GetRow()):
                 if self.row_compare.GetCellValue(i,0) == u"删除":
                     delete_count += 1
             new_delete_row = find_nth_element(excel_new_row_labels, "", delete_count + 1)
             self.excel_new.SelectRow(new_delete_row)
+            self.excel_new.GoToCell(new_delete_row,0)
         e.Skip()
 
     def col_result_onclick(self,e):
@@ -796,21 +800,25 @@ class ExcelDiff(wx.Frame):
         if self.col_compare.GetCellValue(e.GetRow(),0) == u"新增":
             new_insert_col = self.col_compare.GetCellValue(e.GetRow(),1)
             self.excel_new.SelectCol(excel_new_col_labels.index(new_insert_col))
+            self.excel_new.GoToCell(0,excel_new_col_labels.index(new_insert_col))
             insert_count = 0
             for i in range(0, e.GetRow()):
                 if self.col_compare.GetCellValue(i,0) == u"新增":
                     insert_count += 1
             old_insert_col = find_nth_element(excel_old_col_labels, "", insert_count + 1)
             self.excel_old.SelectCol(old_insert_col)
+            self.excel_old.GoToCell(0,old_insert_col)
         if self.col_compare.GetCellValue(e.GetRow(),0) == u"删除":
             old_delete_col = self.col_compare.GetCellValue(e.GetRow(),1)
             self.excel_old.SelectCol(excel_old_col_labels.index(old_delete_col))
+            self.excel_old.GoToCell(0,excel_old_col_labels.index(old_delete_col))
             delete_count = 0
             for i in range(0, e.GetRow()):
                 if self.col_compare.GetCellValue(i,0) == u"删除":
                     delete_count += 1
             new_delete_col = find_nth_element(excel_new_col_labels, "", delete_count + 1)
             self.excel_new.SelectCol(new_delete_col)
+            self.excel_new.GoToCell(0,new_delete_col)
         e.Skip()
 
     def cell_result_onclick(self,e):
