@@ -637,7 +637,11 @@ class ExcelDiff(wx.Frame):
         #     m += 1
         # 单元格比较错了~~~重写吧，凌晨写的代码果然不靠谱
         #
-
+        if row_result.count("pass")==0 or col_result.count("pass")==0:
+            if len(row_result)>len(col_result):
+                del row_result[:]
+            else:
+                del col_result[:]
         # 显示结果
         self.row_compare_text.SetLabelText(
             u"共计新增" + str(row_result.count("insert")) + u"行,删除" + str(row_result.count("delete")) + u"行")
